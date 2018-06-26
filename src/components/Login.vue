@@ -80,7 +80,7 @@ export default {
      login (evt) {
       evt.preventDefault();
       console.log("Inside login");
-      Vue.http.post('http://localhost:8085/login', { username: this.form.username, password: this.form.password })
+      Vue.http.post('http://52.35.111.71:8085/login', { username: this.form.username, password: this.form.password })
         .then(request => this.loginSuccessful(request))
         .catch(() => this.loginFailed())
     },
@@ -103,7 +103,7 @@ export default {
     loginViaLastFm () {
       // evt.preventDefault();
       console.log("Inside login");
-      Vue.http.post('http://localhost:8085/login_via_last_fm', { })
+      Vue.http.post('http://52.35.111.71:8085/login_via_last_fm', { })
         .then(request =>{
           console.log(request.body.data);
           window.location.href=request.body.data.url;
@@ -117,7 +117,7 @@ export default {
     console.log("Inside beforeMount  " + this.$route.query.token);
     if(this.$route.query.token) {
       console.log("Quering backend");
-      Vue.http.post('http://localhost:8085/authenticated_from_fm', { token: this.$route.query.token})
+      Vue.http.post('http://52.35.111.71:8085/authenticated_from_fm', { token: this.$route.query.token})
         .then(request => {
           console.log(request.body, request.body.status);
           if(request.body.status == 200) {

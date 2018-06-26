@@ -25,7 +25,7 @@ export default {
 
     // this.show = false;
     console.log("Inside beforeMount  " + localStorage.token);
-    Vue.http.post('http://localhost:8085/recent_tracks', { access_token: localStorage.token})
+    Vue.http.post('http://52.35.111.71:8085/recent_tracks', { access_token: localStorage.token})
         .then(request => {
           if(request.body.status == 200) {
             var result = request.body.data.data;

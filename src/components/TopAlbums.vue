@@ -65,7 +65,7 @@ export default {
 
     // this.show = false;
     console.log("Inside beforeMount  " + localStorage.token);
-    Vue.http.post('http://localhost:8085/top_albums', { access_token: localStorage.token})
+    Vue.http.post('http://52.35.111.71:8085/top_albums', { access_token: localStorage.token})
         .then(request => {
           var result = request.body.data.data;
           if(request.body.status == 200) {

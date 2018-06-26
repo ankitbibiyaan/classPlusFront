@@ -4,6 +4,7 @@
       <div class="page-header">
   <h1>Login</h1>
 </div>
+<div class="col-md-5 mx-auto" style="margin-top:0.5%;color:red" v-if="error"><p>{{error}}</p></div>
     <b-form @submit="login" @reset="onReset" v-if="show" class="col-md-5 mx-auto" style="margin-top: 5%">
       <b-form-group id="usernameLabel"
                     label="Username:"
@@ -53,7 +54,8 @@ export default {
         // confirmPassword:''
         // checked: []
       },
-      show: false
+      show: false,
+      error : null
     }
   },
   updated () {
@@ -62,10 +64,6 @@ export default {
     }
   },
   methods: {
-    onSubmit (evt) {
-      evt.preventDefault();
-      alert(JSON.stringify(this.form));
-    },
     onReset (evt) {
       evt.preventDefault();
       /* Reset our form values */
@@ -76,6 +74,7 @@ export default {
       /* Trick to reset/clear native browser form validation state */
       this.show = false;
       this.$nextTick(() => { this.show = true });
+      this.error = null;
     },
      login (evt) {
       evt.preventDefault();
@@ -90,19 +89,28 @@ export default {
         this.loginFailed()
         return
       }
-      this.error = false
+
+      if(req.body.status == 200) {
+          this.error = false
       console.log("--",req.body, req.body.data, req.body.data.access_token,req.body.data.usn);
       localStorage.token = req.body.data.access_token
       localStorage.usn = req.body.data.usn;
       this.$router.push('profile');
+      }
+      else {
+        this.error = req.body.data.msg;
+      }
+      
     },
     loginFailed () {
       this.error = 'Login failed!'
       delete localStorage.token
+      delete localStorage.usn
     },
     loginViaLastFm () {
       // evt.preventDefault();
       console.log("Inside login");
+      this.error = false;
       Vue.http.post('http://52.35.111.71:8085/login_via_last_fm', { })
         .then(request =>{
           console.log(request.body.data);

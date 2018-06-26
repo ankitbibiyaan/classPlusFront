@@ -55,8 +55,8 @@
                 <div class="clearfix"></div>
                 <div class="bot-border"></div>
 
-                <div class="col-md-6 col-sm-5 col-xs-6 tital ">Subscribers: </div>
-                <div class="col-md-6 col-sm-7"> {{subscriber}}</div>
+                <!--<div class="col-md-6 col-sm-5 col-xs-6 tital ">Subscribers: </div>
+                <div class="col-md-6 col-sm-7"> {{subscriber}}</div>-->
 
                 <div class="clearfix"></div>
                 <div class="bot-border"></div>
@@ -164,7 +164,7 @@ export default {
             this.name = result.name;
             this.age = result.age;
             this.country = result.country;
-            this.subscriber = result.subscriber;
+            this.subscriber = result.subscriber || 0;
             this.gender = result.gender;
             this.url = result.url;
             this.playcount = result.playcount;

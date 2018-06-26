@@ -124,7 +124,7 @@ export default {
     console.log("Inside beforeMount  " + localStorage.token);
     if(this.$route.query.token) {
       console.log("Quering backend");
-      Vue.http.post('http://52.35.111.71/:8085/authenticated_from_fm', { token: this.$route.query.token,usn : localStorage.usn})
+      Vue.http.post('http://52.35.111.71:8085/authenticated_from_fm', { token: this.$route.query.token,usn : localStorage.usn})
         .then(request => {
           console.log(request.body, request.body.status);
           if(request.body.status == 200) {

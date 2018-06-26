@@ -103,7 +103,7 @@ export default {
         return
       }
       this.error = null;
-      Vue.http.post('http://52.35.111.71:8085/signup', { username: this.form.username, password: this.form.password })
+      Vue.http.post('http://34.211.60.64:8085/signup', { username: this.form.username, password: this.form.password })
         .then(request => this.signupSuccessful(request))
         .catch((ex) => this.signupFailed())
     },

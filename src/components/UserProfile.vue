@@ -110,7 +110,7 @@ export default {
     connectLastFm () {
       // evt.preventDefault();
       console.log("Inside connectLastFm");
-      Vue.http.post(('http://52.35.111.71:8085/login_via_last_fm/'), {usn : localStorage.usn, token: localStorage.token})
+      Vue.http.post(('http://34.211.60.64:8085/login_via_last_fm/'), {usn : localStorage.usn, token: localStorage.token})
         .then(request =>{
           console.log(request.body.data);
           window.location.href=request.body.data.url;
@@ -124,7 +124,7 @@ export default {
     console.log("Inside beforeMount  " + localStorage.token);
     if(this.$route.query.token) {
       console.log("Quering backend");
-      Vue.http.post('http://52.35.111.71:8085/authenticated_from_fm', { token: this.$route.query.token,usn : localStorage.usn})
+      Vue.http.post('http://34.211.60.64:8085/authenticated_from_fm', { token: this.$route.query.token,usn : localStorage.usn})
         .then(request => {
           console.log(request.body, request.body.status);
           if(request.body.status == 200) {
@@ -155,7 +155,7 @@ export default {
     }
     else {
       console.log("token not present else part");
-      Vue.http.post('http://52.35.111.71:8085/get_user_info', { access_token: localStorage.token})
+      Vue.http.post('http://34.211.60.64:8085/get_user_info', { access_token: localStorage.token})
         .then(request => {
           if(request.body.status == 200) {
             var result = request.body.data.data;

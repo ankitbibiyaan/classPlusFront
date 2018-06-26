@@ -28,7 +28,7 @@
       <b-button variant="primary" size="sm" @click.stop="Like(cell.item)" v-else>Like</b-button>
     </template>
   </b-table>
-  <p v-else-if="show===false && busy==false">No Top Albums to show.</p>
+  <p v-else-if="show===false && busy==false">No Recent Tracks to show.</p>
    <p v-if="busy===true">Fetching Data from Last.FM</p>
   <b-row>
       <b-col md="5" class="my-1 mx-auto" v-if="show===true">
@@ -101,7 +101,7 @@ export default {
    Like(dataObject) {
     //  this.show=false;
      console.log(dataObject.name);
-     Vue.http.post('http://52.35.111.71:8085/add_favourite', { access_token: localStorage.token, track_name : dataObject.name})
+     Vue.http.post('http://34.211.60.64:8085/add_favourite', { access_token: localStorage.token, track_name : dataObject.name})
         .then(request => {
             console.log("---",result);
           if(request.body.status == 200) {
@@ -123,7 +123,7 @@ export default {
    DisLike(dataObject) {
     //  console.log(track_name)
      console.log(dataObject, dataObject.fav_id);
-     Vue.http.post('http://52.35.111.71:8085/remove_favourite', { access_token: localStorage.token, fav_id : dataObject.fav_id})
+     Vue.http.post('http://34.211.60.64:8085/remove_favourite', { access_token: localStorage.token, fav_id : dataObject.fav_id})
         .then(request => {
             console.log("---",result);
           if(request.body.status == 200) {
@@ -140,7 +140,7 @@ export default {
    },
   getData () {
     console.log("inside get data");
-    Vue.http.post('http://52.35.111.71:8085/recent_tracks', { access_token: localStorage.token})
+    Vue.http.post('http://34.211.60.64:8085/recent_tracks', { access_token: localStorage.token})
         .then(request => {
           if(request.body.status == 200) {
             var result = request.body.data.data;
